@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://c157us1wcenty"]
+
+[ext_resource type="Script" uid="uid://c2djxlhqrux7h" path="res://player.gd" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cbx5f022vhok3" path="res://player1.png" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://tnu4ve2tbsn7" path="res://plataforma_larga.tscn" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(74, 97.625)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_272bh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0xm2m")
+}],
+"loop": true,
+"name": &"player",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(221, 648.5)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(73, 391.188)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(73, 391.25)
+scale = Vector2(0.5, 0.503)
+sprite_frames = SubResource("SpriteFrames_272bh")
+animation = &"player"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(76, 388)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(-110.5, 325.75)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="Floor" type="Node2D" parent="."]
+
+[node name="plataformaLarga" parent="Floor" instance=ExtResource("3_h2yge")]
+position = Vector2(88, 534)
+
+[node name="plataformaLarga2" parent="Floor" instance=ExtResource("3_h2yge")]
+position = Vector2(1321, 682)
+
+[node name="plataformaLarga3" parent="Floor" instance=ExtResource("3_h2yge")]
+position = Vector2(2717, 682)
